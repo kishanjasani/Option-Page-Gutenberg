@@ -38,3 +38,26 @@ add_action( 'admin_menu', 'option_add_option_menu' );
 function option_menu_callback() {
 	echo '<div id="option-awesome-plugin"></div>';
 }
+
+function option_register_settings() {
+	register_setting(
+		'option_settings',
+		'option_analytics_status',
+		array(
+			'type'         => 'boolean',
+			'show_in_rest' => true,
+			'default'      => false,
+		)
+	);
+
+	register_setting(
+		'option_settings',
+		'option_analytics_key',
+		array(
+			'type'         => 'string',
+			'show_in_rest' => true,
+		)
+	);
+}
+
+add_action( 'init', 'option_register_settings' );
